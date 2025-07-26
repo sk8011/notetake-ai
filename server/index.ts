@@ -133,7 +133,10 @@ app.post("/api/chat", async (req, res) => {
       choices: { message: { role: string; content: string } }[];
     };
 
-    const reply = data.choices?.[0]?.message?.content || "No response.";
+    let reply = data.choices?.[0]?.message?.content || "No response.";
+    reply = reply.replace(/^Bot: <think>[\s\S]*?<\/think>\s*/g, '')
+                .replace(/<think>[\s\S]*?<\/think>\s*/g, '')
+                .trim();
     res.json({ reply });
   } catch (error) {
     console.error("Groq error:", error);

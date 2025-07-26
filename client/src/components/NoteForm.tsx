@@ -54,6 +54,22 @@ export function NoteForm({
   }, []);
 
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      // Trigger only if markdown has unsaved edits or there are temp uploads
+      const hasUnsavedWork =
+        localMarkdown !== markdown || localStorage.getItem("tempUploads");
+
+      if (hasUnsavedWork) {
+        e.preventDefault();
+        e.returnValue = ""; // required for Chrome and most browsers
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [localMarkdown, markdown]);
+
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
