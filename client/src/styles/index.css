@@ -1,0 +1,13 @@
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  display: flex;
+}
+
+.markdown-body video,
+.markdown-body audio {
+  max-width: 50%;
+  margin: 1rem 0;
+  display: flex;
+}
