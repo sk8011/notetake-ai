@@ -22,6 +22,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
   const chatRef = useRef<HTMLDivElement>(null);
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { theme }=useTheme();
 
   // Auto scroll to bottom on new messages
@@ -77,11 +78,19 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
         if (index >= fullReply.length) {
           clearInterval(typingIntervalRef.current!);
           setIsGenerating(false);
+
+          setTimeout(() => {
+            inputRef.current?.focus();
+          },100);
         }
       }, 20);
     } catch (err) {
       console.error(err);
       setIsGenerating(false);
+
+      setTimeout(() => {
+        inputRef.current?.focus();
+      },100);
     }
   };
 
@@ -91,6 +100,9 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
       clearInterval(typingIntervalRef.current);
       typingIntervalRef.current = null;
       setIsGenerating(false);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      },100);
     }
   };
 
@@ -120,6 +132,14 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
     };
   }, [isOpen]);
 
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100); // Small delay to ensure DOM is ready
+    }
+  }, [isOpen]);
 
 
   return (
@@ -162,6 +182,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
 
           <div className="chat-input">
             <input
+              ref={inputRef}
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
