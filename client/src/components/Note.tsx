@@ -67,7 +67,7 @@ export function Note({ onDelete }: NoteProps) {
         </html>
       `;
 
-      const response = await fetch("http://localhost:3001/api/export-pdf", {
+      const response = await fetch("http://notetake-ai.onrender.com/api/export-pdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
