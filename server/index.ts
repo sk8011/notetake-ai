@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-import { generatePdfFromHtml } from "./pdfExport.ts";
+import { generatePdfFromHtml } from "./pdfExport";
 
 dotenv.config();
 
