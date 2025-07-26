@@ -38,7 +38,7 @@ export function NoteForm({
     if (tempUploads.length > 0) {
       Promise.all(
         tempUploads.map((public_id: string) =>
-          fetch("http://localhost:3001/api/delete-image", {
+          fetch("http://notetake-ai.onrender.com/api/delete-image", {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ public_id }),
@@ -110,7 +110,7 @@ export function NoteForm({
       formData.append("file", file);
 
       try {
-        const response = await fetch("http://localhost:3001/api/upload", {
+        const response = await fetch("http://notetake-ai.onrender.com/api/upload", {
           method: "POST",
           body: formData,
         });
@@ -157,7 +157,7 @@ export function NoteForm({
 
   const deleteImage = async (public_id: string, updateMarkdown = true) => {
     try {
-      const response = await fetch("http://localhost:3001/api/delete-image", {
+      const response = await fetch("http://notetake-ai.onrender.com/api/delete-image", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
