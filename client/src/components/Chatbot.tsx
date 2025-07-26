@@ -40,7 +40,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
     setIsGenerating(true);
 
     try {
-      const res = await fetch("http://notetake-ai.onrender.com/api/chat", {
+      const res = await fetch("https://notetake-ai.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
