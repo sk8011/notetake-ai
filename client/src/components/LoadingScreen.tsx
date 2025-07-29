@@ -5,7 +5,7 @@ interface LoadingScreenProps {
 }
 
 export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
-  const messages = ["Starlink Connected ", "Pulling Memory Streams "];
+  const messages = ["Connecting to Starlink ", "Pulling Memory Streams "];
 
   const [text, setText] = useState("");
   const [messageIndex, setMessageIndex] = useState(0);
