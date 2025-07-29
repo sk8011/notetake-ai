@@ -50,7 +50,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             setTimeout(onComplete, 1000); // call onComplete after last msg
           }
         }
-      }, 500); // slower dot speed
+      }, 600); // slower dot speed
     }
 
     return () => clearInterval(interval);
