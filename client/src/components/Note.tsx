@@ -126,11 +126,11 @@ export function Note({ onDelete }: NoteProps) {
             <Link to="/">
               <Button variant="outline-secondary">Back</Button>
             </Link>
-            <Button onClick={handleExport}>Export as HTML</Button>
+            <Button onClick={handleExport}>Export as PDF</Button>
           </Stack>
         </Col>
       </Row>
-      <div style={{ height:"70vh", borderStyle:"double", padding:"14px", overflowY:"auto",}}>
+      <div style={{ height:"70vh", border:"ridge 3px", padding:"14px", overflowY:"auto",}}>
       <MarkdownViewer markdown={note.markdown} ref={markdownRef} /> {/* Attach the ref */}
       </div>
     </>
