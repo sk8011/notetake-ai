@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npx puppeteer browsers install chrome",
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "nodemon index.ts"
