@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  display: flex;
+}
+
+.markdown-body video,
+.markdown-body audio {
+  max-width: 50%;
+  margin: 1rem 0;
+  display: flex;
+}
+
+@layer utilities{
+  @keyframes blink {
+    0%,100%{
+      opacity: 1;
+    }
+    50%{
+      opacity: 0;
+    }
+  }
+
+  .animate-blink{
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes loading{
+    0%{
+      transform: translateX(-100%);
+    }
+    100%{
+      transform: translateX(250%);
+    }
+  }
+
+  .animate-loading-bar{
+    animation: loading 0.8s ease infinite;
+  }
+}
