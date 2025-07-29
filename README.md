@@ -1,6 +1,6 @@
 # Markdown Note-Taking App with Chatbot & PDF Export
 
-A full-stack markdown note-taking application built with **Vite + React + TypeScript** on the frontend and **Node.js + TypeScript** on the backend. The app supports:
+A full-stack markdown note-taking application built with **Vite + React + TypeScript + Tailwind** on the frontend and **Node.js + TypeScript** on the backend. The app supports:
 
 - Creating, editing, and deleting markdown notes
 - Theme switching (light/dark)
