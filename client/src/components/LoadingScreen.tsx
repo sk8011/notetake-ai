@@ -5,15 +5,11 @@ interface LoadingScreenProps {
 }
 
 export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
-  const messages = [
-    "Starlink Connected ",
-    "Pulling Memory Streams "
-  ];
+  const messages = ["Starlink Connected ", "Pulling Memory Streams "];
 
   const [text, setText] = useState("");
   const [messageIndex, setMessageIndex] = useState(0);
   const [phase, setPhase] = useState<"typing" | "dots" | "done">("typing");
-  const [dotCount, setDotCount] = useState(0);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -27,34 +23,41 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           clearInterval(interval);
           setTimeout(() => {
             setPhase("dots");
-            setDotCount(0);
-          }, 300); // pause before dots
+          }, 300);
         }
-      }, 100);
+      }, 70);
     }
 
+    return () => clearInterval(interval);
+  }, [phase, messageIndex]);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
     if (phase === "dots") {
+      let localDotCount = 0;
       interval = setInterval(() => {
+        localDotCount++;
         setText((prev) => prev + ".");
-        setDotCount((prev) => prev + 1);
-        if (dotCount >= 2) {
+        if (localDotCount >= 3) {
           clearInterval(interval);
           if (messageIndex < messages.length - 1) {
             setTimeout(() => {
               setMessageIndex((prev) => prev + 1);
               setText("");
               setPhase("typing");
-            }, 500); // pause before next message
+            }, 500);
           } else {
             setPhase("done");
-            setTimeout(onComplete, 1000); // call onComplete after last msg
+            setTimeout(onComplete, 800);
           }
         }
-      }, 600); // slower dot speed
+      }, 500);
+
     }
 
     return () => clearInterval(interval);
-  }, [phase, messageIndex, dotCount, onComplete]);
+  }, [phase, messageIndex, onComplete]);
 
   return (
     <div className="fixed inset-0 z-50 bg-black text-white flex flex-col items-center justify-center">
