@@ -191,6 +191,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ notes }) => {
                   sendMessage();
                 }
               }}
+              className="section-blur"
               placeholder="Ask me anything..."
             />
             {isGenerating ? (
