@@ -34,12 +34,14 @@ A full-stack markdown note-taking application built with **Vite + React + TypeSc
 - Markdown rendering with [React Markdown](https://github.com/remarkjs/react-markdown)
 - Chatbot with basic interaction
 - LocalStorage for note persistence
+- PDF generation using html2pdf.js
 
 ### Backend
 - Node.js with TypeScript
 - [Express](https://expressjs.com/)
-- PDF generation using [Puppeteer](https://pptr.dev/)
 - [Multer](https://github.com/expressjs/multer) for handling file uploads
+- Groq API for Chatbot
+- Cloudinary for cloud storage of Images
 - [Node-fetch](https://github.com/node-fetch/node-fetch) for making HTTP requests
 
 ---
@@ -47,22 +49,24 @@ A full-stack markdown note-taking application built with **Vite + React + TypeSc
 ## 📁 Project Structure
 
 ```
-New folder/
-├── client/                   # Frontend code
+notetake-ai/
+├── client/
+|   ├── index.html
+|   ├── vite.config.ts            # Vite configuration
+|   ├── package.json
+|   ├── tsconfig*.json            
+|   └── public/icon.svg
 │   └── src/
 │       ├── components/       # UI components including chatbot, notes, forms
 │       ├── styles/           # CSS files
 │       ├── types/            # Type definitions
 │       ├── App.tsx
 │       └── main.tsx
-├── server/                   # Backend for PDF export
+├── server/                   # Backend for Chatbot and Image storage
 │   ├── index.ts
-│   └── pdfExport.ts
-├── index.html
-├── vite.config.ts            # Vite configuration
-├── package.json
-├── tsconfig*.json
-├── .env                      # Environment variables (optional)
+|   └── package.json
+|   └── .env
+|   └── tsconfig.json
 └── README.md
 ```
 
@@ -84,19 +88,20 @@ New folder/
 
 2. **Install dependencies**
    ```bash
-   npm install
+   cd client && npm install
    ```
 
 3. **Start the development server**
    ```bash
-   npm run dev
+   cd client && npm run dev
    ```
 
-4. **Run the backend (for PDF export)**
+4. **Run the backend**
    ```bash
    cd server
    npm install
-   npx ts-node index.ts
+   npm run build
+   npm start
    ```
 
 ---
